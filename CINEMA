@@ -1,0 +1,134 @@
+#include<stdio.h> //Biblioteca de entrada e saída
+#include<math.h> //Biblioteca de operações matemáticas
+#include<locale.h> //Biblioteca para acentuação
+#include<stdlib.h> // Biblioteca de conversão do system
+#include<ctype.h> //Biblioteca de tratamento de caracteres
+#include<string.h> //Biblioteca para junção de caracteres strlen
+
+int main(){ //incialização função main
+	setlocale(LC_ALL,"Portuguese"); //biblioteca para português
+	//variáveis a ser usado
+	int sessoesFilmes, idade, pessoas, homem, i, crianca, mulher, adolescente, adulto, adultoHomem, adultoMulher, idoso, subtracao; 
+	char nomeFilme[30];
+	char sexo;
+	
+	printf("SEJA BEM-VINDO AO CINEPOBREBSB\n\n"); //impressão para contextualização
+	
+	printf("insira o número de sessões:\n"); //impressão na tela, informação a ser preenchida, 1.
+	
+	do{ //comando FAÇA
+		scanf("%d", &sessoesFilmes); //saída
+		
+		if(sessoesFilmes!=2){ //condição para SE
+			printf("O número ultrapassou a quantidade de sessões a ser exibidas hoje, informe outro valor:\n"); //impressão caso o valor do SE seja valido
+		}else if(sessoesFilmes==2){ //condição SENAO, para caso o SE seja falso 1.
+			printf("O número atende as sessões do dia, prossiga\n\n"); //impressão caso o SENÃO seja validado
+		}
+	}while(sessoesFilmes!=2); //condição de repetição ENQUANTO, para repetir o erro, caso o usuário informe um valor que fuja do exigido
+	fflush (stdin); //buffer de memória, para não persistir um resquício e dar erro
+	
+	printf("Digite qual filme deseja assistir:\n"); //impressão na tela, pedindo um nome válido ao usuário 2.
+		
+		do{  //comando FAÇA ENQUANTO
+		fgets(nomeFilme, 30, stdin); //ele recebe a string CHAR, limita a quantidade de caracteres pelo número informado e armazena
+		if(strlen(nomeFilme) <5){ //condição SE, caso seja validada, imprimirá, caso não, passará para o ELSE 2.
+			printf("O campo não pode ficar vazio, por favor, insira um nome:\n"); //caso valide, irá imprimir na tela
+		}else if(strlen(nomeFilme) >6){ //condição SENÃO, somente será validada caso a condição anterior dê falso
+			printf("Ótima escolha, esse filme será exibido em breve\n"); // caso valide, irá imprimir na tela
+		}
+		}while(strlen(nomeFilme) <5); //comando para repetir enquanto o usuário persistir num valor invalido 2.
+		fflush (stdin); // buffer de mémoria para não armazenar e dar erro
+		
+		printf("\nMuito obrigado, aproveite seu filme\n"); //impressão na tela, última mensagem antes de limpar tela
+		system("pause"); //comando para pausar o sistema e só continuar, quando o usuário apertar em qualquer tecla
+		system("cls"); //comando para limpar a tela
+		
+		printf("Bem vindo ao registro do site, veja a quantidade de pessoas que assistiram ao filme nesta semana:\n"); //impressão na tela após limpar a tela
+		
+		printf("\nPor favor, insira um número correspondente a pelo menos 2 dígitos:\n"); // impressão na tela, contextualizando 3.
+		do{ //comando DO WHILE (faça enquanto)
+			scanf("%d", &pessoas); //saída da informação
+			if(pessoas >=10){ //SE o valor for V irá printar a mensagem a seguir
+				printf("\nValor valido, prossiga\n"); // caso a condição seja verdadeiro
+			}else if(pessoas <10){ // SENÃO, se a condição acima for falsa, ele executa o ELSE IF
+				printf("\nValor invalido, insira um valor valido:\n"); //impressão da condição SENÃO
+			}
+		}while(pessoas<10); //enquanto a informação for invalida ele vai da repetição
+		
+		homem = 0;
+		mulher = 0;
+		crianca = 0;      //utilizei para criar o comando da tabela, são identificadores para contador
+		adolescente = 0;
+		adulto = 0;
+		adultoHomem = 0;
+		adultoMulher = 0;
+		idoso = 0;
+		
+		do{ //comando FAÇA
+			printf("\nDigite o sexo, (F ou M):\n"); //printf = leia -impressão na tela contextualizada 4.
+			scanf ("%s", &sexo); // scanf = escreva lê os dados e da saída para armazena-los na mémoria
+			sexo= toupper(sexo); //toupper - usado para identificar um caractere seja maiúsculo ou minuscúlo, convertendo para maiuscúlo
+			fflush(stdin); //limpar a mérmoria
+			if(sexo=='M'){ //condicional SE, caso atenda a condição
+				printf("\nValor aceito, prossiga!"); // imprimirá na tela
+			}else if(sexo=='F'){ //SENÃO, caso a condição acima seja falsa
+				printf("\nValor valido, prossiga!"); // imprimirá na tela
+			}else{ //SENÃO, utilizei por não saber outro meio para usar  a condição
+				printf("\nValor invalido, por favor, insira (F ou M):\n"); //imprimir caso o usuário informe um valor errado 4.
+			}
+			
+			do{ //comando para limitar a idade que o usuário possa utilizar
+				fflush(stdin);
+				printf("\nInsira a idade:\n");
+				scanf ("%d", &idade);
+				if(idade<3 || idade>100){ // condicional SE, usando dois valores e operador lógico OU =||,
+				                         // ele pode validar caso uma das informações, seja verdadeira
+					printf("\no valor ultrapassa o permitido, insira entre 3 a 100:\n");
+				}
+			}while(idade<3 || idade>100); //condicional ENQUANTO, para caso o usuário informar valor errado
+		
+			
+			 if(sexo=='F'){ //condicional SE, caso o valor seja verdadeiro
+			 	mulher++; //ele acrescentara +1 neste contador, caso não seja
+			 }else if(sexo=='M'){ // cai para a condicional MAS SE, e se o valor não corresponder, dará erro.
+			 	homem++;
+			 }if(idade<=13&&idade>3){ //condicional SE, para atender somente se a idade for abaixo ou igual o valor inserido E=&&, ou seja
+			 	crianca++;           //ele só dará como valido, se atender as duas condicionais
+			 }else if(idade<=17){   
+			 	adolescente++;
+			 }else if(idade<=64){    //valores para alocar no contador da condicional que for validada, o valor que for imposto pelo usuário, deverá
+			 	adulto++;           // ser alocada em um dos contadores que foi criado acima para ser exibido na tabela
+			 }else{
+			 	idoso++;
+			 }
+			 
+			 if(sexo=='M'&&idade>=18){  //condicional para saber quantos dos valores que foi dito pelo usuário
+			 	adultoHomem++;         //corresponde a homem ou mulher adulta 2.1
+			 }else if(sexo=='F'&&idade>=18){
+			 	adultoMulher++;
+			 }
+		}while(homem+mulher<=pessoas); //condicional ENQUANTO para calcular a quantidade de pessoas de gênero diferente, ao qual não possa ser maior que
+		                               //a quantidade de pessoas total
+		printf("\nMuito obrigado, agora confira as informações na tabela abaixo:\n"); //impressão final
+		
+		system("pause"); //comando para pausar e só continuar com interferenciâ do usuário
+		system("cls"); // comando para limpar a tela e mostrar uma nova
+		
+		printf("--CLASSIFICAÇÃO-----QUANTIDADE-----FILME--\n");
+		printf("----HOMEM---------------%d----------%s----\n", homem, nomeFilme);
+		printf("----MULHER--------------%d----------%s----\n", mulher, nomeFilme);
+		printf("--------------------------------------------\n");
+		printf("--CLASSIFICAÇÃO-----IDADE-----QUANTIDADE-----FILME--\n");           //tabela com funções a ser preenchida pelos contadores
+		printf("---CRIANÇA----------03 a 13-------%d-----------%s---\n", crianca, nomeFilme);
+		printf("---ADOLESCENTE------14 a 17-------%d-----------%s---\n", adolescente, nomeFilme);
+		printf("---ADULTO-----------18 a 64-------%d-----------%s---\n", adulto, nomeFilme);
+		printf("---IDOSO------------64 a 100------%d-----------%s---\n", idoso, nomeFilme);
+		
+		printf("\nQuantidade de HOMENS ADULTOS: %d\n", adultoHomem);  //para saber a quanrtidade final de adultos de cada gênero
+		printf("\nQuantidade de MULHERES ADULTAS: %d\n", adultoMulher);
+	
+	system("pause"); //comando para pausar e só continuar se o usuário quiser
+		
+
+	return 0; //finalização
+}
