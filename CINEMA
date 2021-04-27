@@ -1,3 +1,6 @@
+//NOME: Warlison Bezerra
+//MATRÍCULA: UC21105867
+//CURSO: Engenharia de Software
 #include<stdio.h> //Biblioteca de entrada e saída
 #include<math.h> //Biblioteca de operações matemáticas
 #include<locale.h> //Biblioteca para acentuação
@@ -8,7 +11,10 @@
 int main(){ //incialização função main
 	setlocale(LC_ALL,"Portuguese"); //biblioteca para português
 	//variáveis a ser usado
-	int sessoesFilmes, idade, pessoas, homem, i, crianca, mulher, adolescente, adulto, adultoHomem, adultoMulher, idoso, subtracao; 
+	
+	int sessoesFilmes, sessoesProximo, idade, pessoas, homem, i, crianca, mulher, adolescente, adulto, adultoHomem, adultoMulher, idoso, subtracao; 
+	//código limpo = defina bem as funções e os nomes (2 nomes significativos) - o código deve ser estruturado para que outros possam também entender
+	//revelando seu próposito
 	char nomeFilme[30];
 	char sexo;
 	
@@ -16,11 +22,12 @@ int main(){ //incialização função main
 	
 	printf("insira o número de sessões:\n"); //impressão na tela, informação a ser preenchida, 1.
 	
-	do{ //comando FAÇA
+	do{ //comando FAÇA código limpo = faça funçõs pequenas, por isso escolhi DO WHILE ao invés de FOR
 		scanf("%d", &sessoesFilmes); //saída
 		
 		if(sessoesFilmes!=2){ //condição para SE
 			printf("O número ultrapassou a quantidade de sessões a ser exibidas hoje, informe outro valor:\n"); //impressão caso o valor do SE seja valido
+			//código limpo = comentários diretos e explicativos e não um comentário que seja ou fale somente que deu erro
 		}else if(sessoesFilmes==2){ //condição SENAO, para caso o SE seja falso 1.
 			printf("O número atende as sessões do dia, prossiga\n\n"); //impressão caso o SENÃO seja validado
 		}
@@ -31,7 +38,7 @@ int main(){ //incialização função main
 		
 		do{  //comando FAÇA ENQUANTO
 		fgets(nomeFilme, 30, stdin); //ele recebe a string CHAR, limita a quantidade de caracteres pelo número informado e armazena
-		if(strlen(nomeFilme) <5){ //condição SE, caso seja validada, imprimirá, caso não, passará para o ELSE 2.
+		if(strlen(nomeFilme) <5){ //condição SE, caso seja validada, imprimirá, caso não, passará para o ELSE 2. -retorna o inteiro e não contabiliza o vazio/nulo
 			printf("O campo não pode ficar vazio, por favor, insira um nome:\n"); //caso valide, irá imprimir na tela
 		}else if(strlen(nomeFilme) >6){ //condição SENÃO, somente será validada caso a condição anterior dê falso
 			printf("Ótima escolha, esse filme será exibido em breve\n"); // caso valide, irá imprimir na tela
@@ -128,7 +135,25 @@ int main(){ //incialização função main
 		printf("\nQuantidade de MULHERES ADULTAS: %d\n", adultoMulher);
 	
 	system("pause"); //comando para pausar e só continuar se o usuário quiser
-		
-
+	system("cls"); //comando para limpar a tela
+	
+	do{  //comando para um extra, para ser mostrado outros filmes
+         	printf("\nQuer saber quais filmes vão aparecer na próxima semana? [1 ou 2]:\n"); //impressão com contextualização da ação
+         	scanf("%d", &sessoesProximo); //escreva e armazene o variável inteiro
+         	fflush(stdin); //limpar o armazenamento na mémoria
+         	if (sessoesProximo <1 || sessoesProximo >2){  // condicional para ação, que não aceitará valor superior OU inferior ao pedido
+         	  printf("\nO valor não corresponde as opções mostradas, informe um valor valido:\n"); //impressão na tela do valor errado
+         	   } else if(sessoesProximo ==1){ //MAS SE o valor atender ao pedido vai printar na tela a mensagem a seguir
+         	          printf("\nVeja os filmes da próxima semana:\n");
+					   printf("\nSEG---O CÓDIGO CORROMPIDO\n");
+					   printf("\nTER---ME ESQUECERAM 2: O PONTO E VÍRGULA CAÇULA\n");
+					   printf("\nQUA---JOGOS MORTAIS: ERROS NO CÓDIGO\n");
+					   printf("\nQUI---MRE RELAÇÃO ENTRE OBJETOS\n");
+					   printf("\nSEX--PHP VS JARVA: A LUTA FINAL\n");
+        }else if(sessoesProximo ==2){ //MAS SE a condição for valida com outro valor, estipulado no início do comando, irá vir para cá e imprimir
+        	printf("\nMuito obrigado pela sua participação, até a próxima\n"); // essa mensagem
+		}
+			}while (sessoesProximo <1 || sessoesProximo >2); //ENQUANTO o usuário colocar um valor correspondente a essa condição cairá no FAÇA
+                                                            //e vai buscar a condição que se assemelha ao que está no WHILE e executará
 	return 0; //finalização
 }
